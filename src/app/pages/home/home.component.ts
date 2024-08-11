@@ -14,13 +14,14 @@ import { CartService } from '../../services/cart.service';
 import { WishListService } from '../../services/wish-list.service';
 import { ContactComponent } from "../contact/contact.component";
 import { ReviewsUsersComponent } from "../../components/reviews-users/reviews-users.component";
+import { BannerComponent } from "../../components/banner/banner.component";
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SliderComponent, ProductComponent, CategorySectionComponent, CarouselModule, ButtonModule, TagModule, ToastModule, ContactComponent, ReviewsUsersComponent],
+  imports: [SliderComponent, ProductComponent, CategorySectionComponent, CarouselModule, ButtonModule, TagModule, ToastModule, ContactComponent, ReviewsUsersComponent, BannerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   providers: [MessageService]

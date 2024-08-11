@@ -21,4 +21,7 @@ export class ProductsService {
   getProductSpecfic(id: string): Observable<any> {
     return this._httpClient.get<any>(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
   }
+  getBrannding(): Observable<any> {
+    return this._httpClient.get<any>(`https://ecommerce.routemisr.com/api/v1/brands`)
+  }
 }

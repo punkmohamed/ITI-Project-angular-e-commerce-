@@ -1,0 +1,26 @@
+<!-- product-carousel.component.html -->
+<!-- product-carousel.component.html -->
+<!-- product-carousel.component.html -->
+<div id="productCarousel" class="carousel slide my-5 d-none d-md-block" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item" data-bs-interval="1500" *ngFor="let page of pages; let isFirst = first"
+      [class.active]="isFirst">
+      <div class="row">
+        <div class="col-sm-3 col-xs-6" *ngFor="let product of page">
+          <div class="sponsor-feature">
+            <img [src]="product.image" [alt]="product.slug" style="width: 200px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
