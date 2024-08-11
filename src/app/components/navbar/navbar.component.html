@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-body-secondary p-4  sticky m-0">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo"
+          loading="lazy" />
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link" routerLinkActive="text-primary">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/products" class="nav-link" routerLinkActive="text-primary">Products</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center ">
+      <div class="d-flex float-end">
+        <!-- Conditional rendering based on login status -->
+        @if(!isLoggedIn) {
+        <button routerLink="/login" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
+          <i class="fas fa-user-alt m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">Sign in</p>
+        </button>
+        <button routerLink="/register" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
+          <i class="fas fa-user-alt m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">Register</p>
+        </button>
+        } @else {
+        <a routerLink="/settings/favoriteProducts"
+          class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
+          <i class="fas fa-heart m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">Wishlist</p>
+          @if(wishListNumber>0) {
+          <span class="badge rounded-pill badge-notification bg-danger">{{wishListNumber}}</span>
+          }
+        </a>
+        <a routerLink="/cart" class="border rounded py-1 px-3 nav-link d-flex align-items-center">
+          <i class="fas fa-shopping-cart m-1 me-md-2"></i>
+          <p class="d-none d-md-block mb-0">My cart</p>
+          @if (cartNumber >0) {
+          <span class="badge rounded-pill badge-notification bg-danger">{{cartNumber}}</span>
+          }
+        </a>
+        }
+        @if(isLoggedIn){
+        <div class="dropdown mt-1 mx-2">
+          <span class="dropdown-toggle d-flex align-items-center" href="#" id="dropdownMenuButton" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            {{ userInformation?.name }}
+          </span>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" routerLink="/settings/profile">Change Info</a></li>
+            <li><a class="dropdown-item" routerLink="/settings/yourAddress">Shipping Address</a></li>
+            <li><a class="dropdown-item" (click)="Logout()">Logout</a></li>
+          </ul>
+        </div>
+        }
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>

@@ -1,0 +1,129 @@
+<div class="container my-5 w-75 border border-4 border-info shadow-lg rounded-5">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="row jumbotron box8 p-5">
+      <div class="col-sm-12 mx-t3 mb-4">
+        <h2 class="text-center text-info">Register</h2>
+        @if(errorMessage){
+        <p class="bg-danger w-50 rounded-5 mx-auto p-3">{{errorMessage}}</p>
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': nameControl.invalid && nameControl.touched, 'is-valid': nameControl.valid && nameControl.touched}"
+          id="name" placeholder="Full Name" formControlName="name">
+        <label for="name" class="ms-3 text-secondary">Full Name</label>
+        @if(nameControl.errors && nameControl.touched) {
+        <div class="invalid-feedback">
+          @if(nameControl.errors['required']) {
+          <p class="mb-0">Required</p>
+          } @else if (nameControl.errors['minlength']){
+          <p class="mb-0">Min length should be at least 3</p>
+          } @else if (nameControl.errors['maxlength']){
+          <p class="mb-0">Max length should not exceed 10</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="number" class="form-control"
+          [ngClass]="{'is-invalid': ageControl.invalid && ageControl.touched, 'is-valid': ageControl.valid && ageControl.touched}"
+          id="age" placeholder="Age" formControlName="age">
+        <label for="age" class="ms-3 text-secondary">Age</label>
+        @if(ageControl.errors && ageControl.touched) {
+        <div class="invalid-feedback">
+          @if(ageControl.errors['required']) {
+          <p class="mb-0">Required</p>
+          } @else if (ageControl.errors['min']){
+          <p class="mb-0">Min length should be at least 3</p>
+          } @else if (ageControl.errors['max']){
+          <p class="mb-0">Max length should not exceed 10</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="col-sm-12 form-floating mb-3">
+        <input type="email" class="form-control"
+          [ngClass]="{'is-invalid': emailControl.invalid && emailControl.touched, 'is-valid': emailControl.valid && emailControl.touched}"
+          id="email" placeholder="Email" formControlName="email">
+        <label for="email" class="ms-3 text-secondary">Email</label>
+        @if(emailControl.errors && emailControl.touched) {
+        <div class="invalid-feedback">
+          @if(emailControl.errors['required']) {
+          <p class="mb-0">Required</p>
+          } @else if (emailControl.errors['email']){
+          <p class="mb-0">Invalid email</p>
+          }
+        </div>
+        }
+      </div>
+      @for (location of locations.controls; track location; let i= $index) {
+      <div formArrayName="locations" class="col-sm-12 form-group mb-3">
+        <div [formGroupName]="i" class="row">
+          <div class="col-sm-4 form-floating mb-3">
+            <input type="text" class="form-control" id="country{{i}}" placeholder="Country" formControlName="country">
+            <label for="country{{i}}" class="ms-3">Country</label>
+          </div>
+          <div class="col-sm-4 form-floating mb-3">
+            <input type="text" class="form-control" id="city{{i}}" placeholder="City" formControlName="city">
+            <label for="city{{i}}" class="ms-3">City</label>
+          </div>
+          <div class="col-sm-4 form-floating mb-3">
+            <input type="text" class="form-control" id="zip{{i}}" placeholder="Zip Code" formControlName="zip">
+            <label for="zip{{i}}" class="ms-3">Zip Code</label>
+          </div>
+          <div class="col-sm-12  mx-auto mb-3">
+            <button type="button" class="btn btn-danger" (click)="removeLocation(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+      }
+      <div class="col-sm-12 mb-3 mt-0 mx-auto">
+        <button type="button" class="btn btn-primary mx-auto d-block" (click)="addLocation()">Add Location</button>
+      </div>
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="password" class="form-control"
+          [ngClass]="{'is-invalid': passwordControl.invalid && passwordControl.touched, 'is-valid': passwordControl.valid && passwordControl.touched}"
+          id="password" placeholder="Password" formControlName="password">
+        <label for="password" class="ms-3 text-secondary">Password</label>
+        @if(passwordControl.errors && passwordControl.touched) {
+        <div class="invalid-feedback">
+          @if(passwordControl.errors['required']) {
+          <p class="mb-0">Required</p>
+          } @else if (passwordControl.errors['pattern']){
+          <p class="mb-0">Password must be at least 3 characters and include both letters and numbers</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="password" class="form-control"
+          [ngClass]="{'is-invalid': rePasswordControl.invalid && rePasswordControl.touched, 'is-valid': rePasswordControl.valid && rePasswordControl.touched}"
+          id="rePassword" placeholder="Confirm Password" formControlName="rePassword">
+        <label for="rePassword" class="ms-3 text-secondary">Confirm Password</label>
+        @if(rePasswordControl.errors && rePasswordControl.touched){
+        <div class="invalid-feedback">
+          @if(rePasswordControl.errors['required']) {
+          <p class="mb-0">Required</p>
+          } @else if (rePasswordControl.hasError('passwordMismatch') &&
+          rePasswordControl.touched){
+          <p class="mb-0">Passwords do not match</p>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="col-sm-12 form-group mt-4">
+        <button class="btn btn-info float-right d-block mx-auto mb-5 w-25" [disabled]="isLoading">
+          @if(isLoading){
+          <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+          }
+          Register
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

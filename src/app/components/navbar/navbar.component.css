@@ -1,0 +1,22 @@
+div a {
+  text-decoration: none;
+}
+div a:hover {
+  background-color: rgb(161, 212, 229);
+  border-radius: 20px;
+}
+nav{
+  background-color: rgb(11, 11, 11);
+}
+a{
+  text-decoration: none;
+
+}
+span{
+  cursor: pointer;
+}
+.navbar.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}

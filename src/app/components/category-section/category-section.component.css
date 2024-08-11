@@ -1,0 +1,25 @@
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.hero-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.text {
+  font-size: 1.2rem;
+}

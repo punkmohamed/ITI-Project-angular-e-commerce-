@@ -1,0 +1,48 @@
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
+  }
+  }
+
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+  }
+
+  .card-registration .select-arrow {
+  top: 13px;
+  }
+  .quantity-input {
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+  }
+a{
+  cursor: pointer;
+}
+.empty-cart-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height to center content */
+  text-align: center;
+}
+
+.empty-cart-message {
+  font-size: 48px; /* Large font size for the message */
+  margin-bottom: 20px; /* Space between message and button */
+}
+
+.go-to-products-btn {
+  font-size: 24px; /* Larger font size for the button */
+  padding: 10px 20px;
+}
+

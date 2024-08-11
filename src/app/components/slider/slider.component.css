@@ -1,0 +1,9 @@
+
+.carousel-indicators button {
+  border-radius: 50%;
+  width: 20px !important;
+  height: 20px !important;
+}
+.carousel-item img {
+  height: 500px;
+}

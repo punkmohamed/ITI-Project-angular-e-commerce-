@@ -1,0 +1,92 @@
+<!-- <app-sidebar></app-sidebar> -->
+<div class="leftsidebar">
+  <div class="sticky">
+    <a class="bl7 btn btn-danger" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+      aria-controls="offcanvasExample">
+      <i class="fs-1 fa-solid fa-bars-staggered"></i>
+    </a>
+  </div>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header bg-body-secondary">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel">Filter</h4>
+      <hr />
+    </div>
+    <div class="offcanvas-body">
+      <div class="my-2">
+        <div class="my-2">
+          <label for="priceRange" class="form-label">Price Range: {{ minPrice }} - {{ priceRange }}</label>
+          <input type="range" class="form-range" [min]="minPrice" [max]="maxPrice" id="priceRange"
+            [(ngModel)]="priceRange" (change)="getProductByPriceRange()" />
+        </div>
+        <ul class="ulbl7 list-group">
+          <li class="list-group-item" (click)="getMoreProduct()">All</li>
+          @for (category of uniqueCategories; track $index ) {
+          <li class="list-group-item" (click)="getProductByCategory(category)">
+            {{ category }}
+          </li>
+          }
+          <div class="dropdown mt-2">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Sort Options
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <a class="dropdown-item" href="#" (click)="sortByPriceAsc()">Price Ascending</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" (click)="sortByNameAsc()">Name Ascending</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" (click)="sortByPriceDec()">Price Descending</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" (click)="sortByNameDec()">Name Descending</a>
+              </li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="promargin">
+  <div class="container pt-5">
+    <div class="contant mt-5">
+      <div class="my-5">
+        <input type="text" class="form-control border-2 border-danger mx-auto w-50"
+          placeholder="Search no to find the product of your choosen" [(ngModel)]="searchTerm"
+          (ngModelChange)="filterProductsByName()" />
+      </div>
+      <div class="header mb-5">
+        <span class="fs-5 trending py-4 me-2">All Product</span>
+        <span class="py-4">result : {{ products.length }}</span>
+        @if(loading){
+        <app-spinner></app-spinner>
+        }
+        @defer (on timer(1s)) {
+        <div class="row gy-4">
+          @if(products.length === 0) {
+          <div class="col-12 text-center">
+            <h1>No products found</h1>
+          </div>
+          }
+          @if(!loading && products.length > 0){
+          @for (product of products; track $index) {
+          <div class="col-md-3 col-sm-6 mb-4">
+            <app-product [product]="product"></app-product>
+          </div>
+          }
+          @if (!hideButton) {
+          <div class="col-12 text-center">
+            <button class="btn btn-danger w-25" (click)="moreProduct()">More products</button>
+          </div>
+          }
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

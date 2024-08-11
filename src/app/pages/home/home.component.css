@@ -1,0 +1,31 @@
+
+@import "primeicons/primeicons.css";
+.card {
+  padding: 0;
+  transition: .3s;
+
+}
+.col-3 .card{
+  height: 400px;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image{
+  height: 240px;
+  transition: .3s;
+
+}
+
+.trending::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  margin-right: 8px;
+}
+.card-content div h2 {
+  font-size: 25px;
+}

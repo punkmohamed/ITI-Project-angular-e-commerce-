@@ -1,0 +1,6 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+.p-toast .p-toast-message {
+  background-color: white;
+  color: black;
+}

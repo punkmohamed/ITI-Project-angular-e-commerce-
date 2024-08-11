@@ -1,0 +1,146 @@
+<div class="container my-5 w-75 border border-4 border-info shadow-lg rounded-5">
+  <form [formGroup]="updateForm" (ngSubmit)="updateUserInformation($event)">
+    <div class="row jumbotron box8 p-5">
+      <div class="col-sm-12 mx-t3 mb-4">
+        <h2 class="text-center text-info">Edit Profile</h2>
+        @if(errorMessage){
+        <div class="bg-danger w-50 rounded-5 mx-auto p-3">
+          {{errorMessage}}
+        </div>
+        }
+      </div>
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': nameControl.invalid && nameControl.touched, 'is-valid': nameControl.valid && nameControl.touched}"
+          id="name" placeholder="Full Name" formControlName="name" [value]="information.name">
+        <label for="name" class="ms-3 text-secondary">Full Name</label>
+        @if(nameControl.errors && nameControl.touched){
+        @if(nameControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+          @if(nameControl.errors['minlength']){
+          <div>
+            Min length should be at least 5
+          </div>
+          }
+          @if(nameControl.errors['maxlength']){
+          <div>
+            Max length should not exceed 10
+          </div>
+          }
+        </div>
+        }
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="number" class="form-control"
+          [ngClass]="{'is-invalid': ageControl.invalid && ageControl.touched, 'is-valid': ageControl.valid && ageControl.touched}"
+          id="age" placeholder="Age" formControlName="age" [value]="information.age">
+        <label for="age" class="ms-3 text-secondary">Age</label>
+        @if(ageControl.errors && ageControl.touched){
+        @if(ageControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+        </div>
+        }
+        @if(ageControl.errors['min']){
+        <div class="invalid-feedback">
+          <div>
+            Minimum age is 16
+          </div>
+        </div>
+        }
+        @if(ageControl.errors['max']){
+        <div class="invalid-feedback">
+          <div>
+            Maximum age is 100
+          </div>
+        </div>
+        }
+        }
+      </div>
+
+      <div class="col-sm-12 form-floating mb-3">
+        <input type="email" class="form-control"
+          [ngClass]="{'is-invalid': emailControl.invalid && emailControl.touched, 'is-valid': emailControl.valid && emailControl.touched}"
+          id="email" placeholder="Email" formControlName="email" [value]="information.email">
+        <label for="email" class="ms-3 text-secondary">Email</label>
+        @if(emailControl.errors && emailControl.touched){
+        @if(emailControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+        </div>
+        }
+        @if(emailControl.errors['email']){
+        <div class="invalid-feedback">
+          <div>
+            Invalid email
+          </div>
+        </div>
+        }
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="password" class="form-control"
+          [ngClass]="{'is-invalid': passwordControl.invalid && passwordControl.touched, 'is-valid': passwordControl.valid && passwordControl.touched}"
+          id="password" placeholder="Password" formControlName="password">
+        <label for="password" class="ms-3 text-secondary">Password</label>
+        @if(passwordControl.errors && passwordControl.touched){
+        @if(passwordControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+        </div>
+        }
+        @if(passwordControl.errors['pattern']){
+        <div class="invalid-feedback">
+          <div>
+            Password must be at least 3 characters and include both letters and numbers
+          </div>
+        </div>
+        }
+        }
+      </div>
+
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="password" class="form-control"
+          [ngClass]="{'is-invalid': rePasswordControl.invalid && rePasswordControl.touched, 'is-valid': rePasswordControl.valid && rePasswordControl.touched}"
+          id="rePassword" placeholder="Confirm Password" formControlName="rePassword">
+        <label for="rePassword" class="ms-3 text-secondary">Confirm Password</label>
+        @if(rePasswordControl.errors && rePasswordControl.touched){
+        @if(rePasswordControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+        </div>
+        }
+        @if(rePasswordControl.hasError('passwordMismatch')){
+        <div class="invalid-feedback">
+          <div>
+            Passwords do not match
+          </div>
+        </div>
+        }
+        }
+      </div>
+      <div class="col-sm-12 form-group mt-4">
+        <button class="btn btn-info float-right d-block mx-auto mb-5 w-25" [disabled]="isLoading">
+          @if(isLoading){
+          <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+          }
+          Update Profile
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

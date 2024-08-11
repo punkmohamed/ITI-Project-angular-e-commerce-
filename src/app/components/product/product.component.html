@@ -1,0 +1,50 @@
+<p-toast></p-toast>
+
+<div class="container mt-5">
+  <div class="d-grid">
+    <div class="row ">
+      <div class="col-md-3 col-sm-6 mb-4" style="width: 330px;">
+        <div class="product-grid">
+          <div class="product-image">
+            <a class="image" (click)="goToProductDetails(product.id)">
+              <img class="pic-1 object-fit-scale" [src]="product.imageCover" style=" height: 250px;">
+              <img class="pic-2" [src]="product.images[2]" style=" height: 250px;">
+            </a>
+            <span class="product-hot-label">{{product.category.name}}</span>
+            <ul class="product-links">
+              <!-- <li><a [attr.data-tip]="Add to Wishlist"> -->
+              <li><a data-tip="Add to Wishlist" (click)="addToWishlist(product.id)">
+                  <i class="far fa-heart"></i>
+                </a>
+              </li>
+              <li><a data-tip="Add To Cart" (click)="addProductToCart(product.id)"><i
+                    class="fa-solid fa-cart-shopping"></i></a></li>
+              <li><a data-tip="Quick View" (click)="goToProductDetails(product.id)"><i class="fa fa-search"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="product-content">
+            <h3 class="title"><a>{{product.title}}</a></h3>
+            <ul class="rating">
+              @for( star of getFullStars(product.ratingsAverage); track $index) {
+              <li class="fas fa-star"></li>
+              }
+              @if(hasHalfStar(product.ratingsAverage)){
+              <li class="fas fa-star-half-alt"></li>
+              }
+              @for(star of getEmptyStars(product.ratingsAverage); track $index){
+              <li class="far fa-star"></li>
+              }
+            </ul>
+            <div>
+              <h1 class="add-to-cart price" (click)="addProductToCart(product.id)">
+                <i class="fas fa-plus"></i> Add to cart
+              </h1>
+            </div>
+            <div class="price">${{product.price}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
