@@ -15,6 +15,8 @@ import { FavoritesProductsComponent } from './pages/favorites-products/favorites
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ShippingUserAddressComponent } from './pages/shipping-user-address/shipping-user-address.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { UserOrdersComponent } from './pages/user-orders/user-orders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,11 +29,13 @@ export const routes: Routes = [
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:token', component: ResetPasswordComponent },
   { path: 'verfiyAccount/:token', component: ActivateAccountComponent },
+  { path: 'checkOut/:id', component: CheckOutComponent },
   {
     path: 'settings', canActivate: [authGuard], component: SettingsComponent, children: [
       { path: 'profile', canActivate: [authGuard], component: UserInfoComponent },
       { path: 'favoriteProducts', canActivate: [authGuard], component: FavoritesProductsComponent },
       { path: 'yourAddress', canActivate: [authGuard], component: ShippingUserAddressComponent },
+      { path: 'userOrders', canActivate: [authGuard], component: UserOrdersComponent },
     ]
   },
 ];

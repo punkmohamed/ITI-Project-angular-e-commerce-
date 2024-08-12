@@ -9,14 +9,15 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, ToastModule, RouterLinkActive, SpinnerComponent],
+  imports: [CommonModule, ToastModule, RouterLinkActive, SpinnerComponent, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
-  providers: [MessageService, RouterLink, ProgressSpinnerModule]
+  providers: [MessageService, ProgressSpinnerModule]
 })
 export class CartComponent implements OnInit {
   cart: any = []
   totalPrice: number = 0
+  cartId: any
   loading: boolean = true;
   constructor(public router: Router,
     private _cartService: CartService,
@@ -36,6 +37,7 @@ export class CartComponent implements OnInit {
     this._cartService.getCart().subscribe({
       next: (res) => {
         console.log(res.data.totalCartPrice);
+        this.cartId = res.data._id
         this.cart = res.data.products;
         this.totalPrice = res.data.totalCartPrice
         this._cartService.changeCart(res.data.products.length)

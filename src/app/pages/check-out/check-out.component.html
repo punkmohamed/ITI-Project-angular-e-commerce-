@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<div class="container my-5 w-75  border bg-body-secondary  rounded-1">
+  <form [formGroup]="updateForm">
+    <div class="row jumbotron box8 p-5">
+      <div class="col-sm-12 mx-t3 mb-4">
+        <h2 class="text-center text-info">Check Out</h2>
+        @if(errorMessage){
+        <div class="bg-danger w-50 rounded-5 mx-auto p-3">
+          {{errorMessage}}
+        </div>
+        }
+      </div>
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="text" class="form-control"
+          [ngClass]="{'is-invalid': detailsControl.invalid && detailsControl.touched, 'is-valid': detailsControl.valid && detailsControl.touched}"
+          id="details" placeholder="Full details" formControlName="details">
+        <label for="details" class="ms-3 text-secondary">Full details</label>
+        @if(detailsControl.errors ){
+        <div class="invalid-feedback">
+          @if(detailsControl.errors['required']){
+          <div>
+            required
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col-sm-6 form-floating mb-3">
+        <input type="tel" class="form-control"
+          [ngClass]="{'is-invalid': phoneControl.invalid && phoneControl.touched, 'is-valid': phoneControl.valid && phoneControl.touched}"
+          id="" placeholder="phone" formControlName="phone">
+        <label for="phone" class="ms-3 text-secondary">phone</label>
+        @if(phoneControl.errors){
+
+        @if(phoneControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            Required
+          </div>
+        </div>
+        }
+        }
+      </div>
+
+      <div class="col-sm-12 form-floating mb-3">
+        <input type="email" class="form-control"
+          [ngClass]="{'is-invalid': cityControl.invalid && cityControl.touched, 'is-valid': cityControl.valid && cityControl.touched}"
+          id="city" placeholder="city" formControlName="city">
+        <label for="city" class="ms-3 text-secondary">City</label>
+        @if(cityControl.errors){
+
+        @if(cityControl.errors['required']){
+        <div class="invalid-feedback">
+          <div>
+            failed required
+          </div>
+        </div>
+        }
+        }
+      </div>
+
+
+      <div class="col-sm-12 d-flex  ">
+        <button type="submit" (click)="checkOutPayment($event,cartId)"
+          class="btn  btn-outline-success float-right d-block mx-auto m-1" [disabled]="isLoading">
+          @if(isLoading){
+          <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+          }
+          Online Payment
+        </button>
+      </div>
+    </div>
+      
+  </form>
+</div>

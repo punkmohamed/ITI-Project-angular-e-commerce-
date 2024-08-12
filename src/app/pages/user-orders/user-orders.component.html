@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h2 class="mb-4">User Orders</h2>
+  <table class="table table-bordered table-hover" *ngIf="orders.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Shipping Address</th>
+        <th scope="col">Payment Method</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Is Paid</th>
+        <th scope="col">Is Delivered</th>
+        <th scope="col">Order Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.user.name }}</td>
+        <td>{{ order.user.email }}</td>
+        <td>{{ order.shippingAddress.city }}, {{ order.shippingAddress.details }}, {{ order.shippingAddress.phone }}
+        </td>
+        <td>{{ order.paymentMethodType }}</td>
+        <td>${{ order.totalOrderPrice }}</td>
+        <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+        <td>{{ order.isDelivered ? 'Yes' : 'No' }}</td>
+        <td>{{ order.createdAt | date:'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="orders.length === 0" class="alert alert-warning">
+    No orders found.
+  </div>
+</div>

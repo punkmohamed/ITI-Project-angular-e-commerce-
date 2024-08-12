@@ -86,7 +86,9 @@
                     </div>
                     <div class="d-flex align-items-center">
                       <button type="button" data-mdb-button-init data-mdb-ripple-init
-                        class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Register</button>
+                        class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark"><a
+                          [routerLink]="['/checkOut',cartId]">Check
+                          Out</a> </button>
                       <button type="button" class="btn btn-warning btn-block btn-lg mx-2" (click)="removeCart()">Empty
                         Cart</button>
                     </div>
